@@ -1,0 +1,7 @@
+{
+  "name": "iCollect_new",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
