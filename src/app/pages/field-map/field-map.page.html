@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu/field-mapping" routerDirection="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"FIELD_MAP" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="map_container">
+    <div id='field-map'></div>
+  </div>
+
+  <div class="fixedList">
+    <ion-list>
+      <ion-item *ngFor="let item of contacts">
+        <ion-avatar slot="start">
+          <img [src]="item.photo">
+        </ion-avatar>
+        <ion-label (click)="cPlantationOnMap(item.id_contact)">
+          <h3>{{item.name}}</h3>
+          <p>{{item.town_name}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

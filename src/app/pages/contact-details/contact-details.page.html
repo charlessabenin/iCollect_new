@@ -1,0 +1,210 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToList()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"CONTACT_DETAILS" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="editContact()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div style="width: 60%; height: auto; margin:0 auto;" *ngIf="has_avatar">
+    <img-loader [src]="avatarURL" *ngIf="avatarURL" useImg></img-loader>
+  </div>
+
+  <h3 text-center>{{ name }}</h3>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"STATUS" | translate }}</ion-label>
+      <p>{{ dc_completed }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CONTAC_CODE" | translate }}</ion-label>
+      <p>{{ contact_code }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CONTACT_ID" | translate }}</ion-label>
+      <p>{{ id_contact }}</p>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="stacked">{{"CIVIL_STATUS" | translate }}</ion-label>
+      <p>{{ civil_status }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"NATIONALITY" | translate }}</ion-label>
+      <p>{{ nationality }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_CHILDREN" | translate }}</ion-label>
+      <p>{{ number_children }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PLACE_BIRTH" | translate }}</ion-label>
+      <p>{{ place_birth }}</p>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 1</ion-label>
+      <p>
+        <a href="tel:{{ p_phone }}" *ngIf="p_phone" style="text-decoration:none;">
+          <ion-icon name="call" color="danger"></ion-icon> {{ p_phone }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 2</ion-label>
+      <p>
+        <a href="tel:{{ p_phone2 }}" *ngIf="p_phone2" style="text-decoration:none;">
+          <ion-icon name="call" color="danger"></ion-icon> {{ p_phone2 }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 3</ion-label>
+      <p>
+        <a href="tel:{{ p_phone3 }}" *ngIf="p_phone3" style="text-decoration:none;">
+          <ion-icon name="call" color="danger"></ion-icon> {{ p_phone3 }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MOBILE_PAYEMENT" | translate }}</ion-label>
+      <p>
+        <a href="tel:{{ p_phone4 }}" *ngIf="p_phone4" style="text-decoration:none;">
+          <ion-icon name="call" color="danger"></ion-icon> {{ p_phone4 }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MOBILE_MONEY_OPERATOR" | translate }}</ion-label>
+      <p>{{ mobile_money_operator }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_PRIVATE" | translate }}</ion-label>
+      <p>
+        <a href="mailto:{{ p_email2 }}" *ngIf="p_email2" style="text-decoration:none;">
+          <ion-icon name="mail" color="danger"></ion-icon> {{ p_email2 }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_BUSINESS" | translate }}</ion-label>
+      <p>
+        <a href="mailto:{{ p_email }}" *ngIf="p_email" style="text-decoration:none;">
+          <ion-icon name="mail" color="danger"></ion-icon> {{ p_email }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_ICOLLECT" | translate }}</ion-label>
+      <p>
+        <a href="mailto:{{ p_email3 }}" *ngIf="p_email3" style="text-decoration:none;">
+          <ion-icon name="mail" color="danger"></ion-icon> {{ p_email3 }}
+        </a>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BANK_NAME" | translate }}</ion-label>
+      <p>{{ bankname }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MEMBER_OF_COOP" | translate }}</ion-label>
+      <p>{{ id_coop_member }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"COOP_NAME" | translate }}</ion-label>
+      <p>{{ cooperative_name }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"TOWN" | translate }}</ion-label>
+      <p>{{ town_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VILLAGE" | translate }}</ion-label>
+      <p>{{ p_street1 }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER" | translate }}</ion-label>
+      <p>{{ gender }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIRTHDATE" | translate }}</ion-label>
+      <p>{{ birth_date }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LANGUAGE" | translate }}</ion-label>
+      <p>{{ national_lang }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TRADITIONAL_LANGUAGE" | translate }}</ion-label>
+      <p>{{ other_lang }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <p>{{ notes }}</p>
+    </ion-item>
+
+    <ion-item *ngIf="farmer_signature_preview">
+      <ion-label position="stacked">{{"FARMER_SIGNATURE" | translate }}</ion-label>
+      <img [src]="farmer_signature" style="margin-top:8px;"/>
+    </ion-item>
+
+    <ion-item *ngIf="agent_signature_preview">
+      <ion-label position="stacked">{{"AGENT_SIGNATURE" | translate }}</ion-label>
+      <img [src]="agent_signature" style="margin-top:8px;"/>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="block" color="danger" (click)="documents()">
+        <ion-icon style="margin-right:7px;" name="document"></ion-icon> {{"DOCUMENTS" | translate }}
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-button expand="block" color="primary" (click)="servey()">
+        <ion-icon style="margin-right:7px;" name="stats"></ion-icon> {{"SURVEY" | translate }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

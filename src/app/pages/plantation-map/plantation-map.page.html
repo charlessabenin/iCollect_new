@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="backBtn" routerLink="/tabs/tabs/plantation-list" routerDirection="root">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"PLANTATION_MAP" | translate }}</ion-title>  
+    <ion-buttons slot="end">
+      <ion-button *ngIf="saveColPoint" (click)="saveCollectionPoint()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="savePlantPoly" (click)="savePlantPolygon()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button> 
+
+      <ion-button *ngIf="savePath" (click)="savePathLine()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <div id='plantation-map'></div>
+
+  <ion-row id="managBtn">
+    <ion-col size="4">
+      <ion-button expand="block" color="danger" style="font-size: 10px;" [disabled]="showColPoint"
+        (click)="checkGPSPermission(1)">
+        {{"COLLECTION_POINT" | translate }}
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-button expand="block" color="danger" style="font-size: 10px;" [disabled]="plantPoly" (click)="polyAction()">
+        {{"WAY_POINT" | translate }}
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-button expand="block" style="font-size: 10px;" color="danger" [disabled]="pathLine" (click)="pathAction()">
+        {{"DRAW_A_PATH" | translate }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-fab vertical="top" horizontal="start" *ngIf="drawAdd" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="selectImage()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button (click)="captureVideo()">
+        <ion-icon name="videocam"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <!-- Path action buttons -->
+    <ion-fab-button color="danger" *ngIf="pathStop" (click)="pathActionStop()" style="margin-bottom:5px;">
+      <ion-icon name="hand"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-button *ngIf="pathStart" (click)="pathActionStart()">
+      <ion-icon name="recording"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

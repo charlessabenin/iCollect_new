@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"NEW_MEDIA" | translate }}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngIf="docImg">
+      <img [src]="docImg">
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" *ngIf="contactDoc">{{"DOCUMENT_TYPE" | translate }} </ion-label>
+      <ion-label position="floating" *ngIf="plantationDoc">{{"PLANTATION_PICT_TYPE" | translate }} </ion-label>
+      <ion-select [(ngModel)]="doc_type">
+        <ion-select-option *ngFor="let item of docTypeList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DATE" | translate }} </ion-label>
+      <ion-label>{{ doc_date }}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{"DESCRIPTION" | translate }} </ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="description" name="description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="contactDoc" expand="block" color="danger" (click)="getDocument('documents')">
+    <ion-icon style="margin-right:5px;" name="camera"></ion-icon> {{"PHOTO_DOCUMENT" | translate }}
+  </ion-button>
+
+  <ion-button *ngIf="plantationDoc" expand="block" color="danger" (click)="getDocument('plantations')">
+    <ion-icon style="margin-right:5px;" name="camera"></ion-icon> {{"PHOTO_PLANTATION" | translate }}
+  </ion-button>
+
+</ion-content>

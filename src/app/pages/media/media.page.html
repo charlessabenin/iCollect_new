@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"MEDIA" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="newMedia()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h3 *ngIf="medias.length == 0" text-center>{{"NO_MEDIA_STORED" | translate }}</h3>
+
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of medias" text-wrap>
+      <ion-thumbnail slot="start" (click)="showMedia(item)">
+        <img [src]="item.path">
+      </ion-thumbnail>
+      <ion-label (click)="openMeia(item)"> 
+        <h2>{{ item.cvalue }}</h2>
+        <p>{{ item.doc_date }}</p>
+        <small>{{ item.description }}</small>
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="deleteConfirm(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

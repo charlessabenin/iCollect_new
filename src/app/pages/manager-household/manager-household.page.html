@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navBack()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"HOUSEHOLD_DETAILS" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="editHousehold()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div style="width: 60%; height: auto; margin:0 auto;">
+    <img [src]="avatarURL" *ngIf="avatarURL" />
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_NAME" | translate }}</ion-label>
+      <p>{{ fname }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAST_NAME" | translate }}</ion-label>
+      <p>{{ lname }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIRTHYEAR" | translate }}</ion-label>
+      <p>{{ birth_year }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RELATION" | translate }}</ion-label>
+      <p>{{ relation }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_PRIMARY" | translate }}</ion-label>
+      <p>{{ graduate_primary }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_SECONDARY" | translate }}</ion-label>
+      <p>{{ graduate_secondary }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_TERTIARY" | translate }}</ion-label>
+      <p>{{ graduate_tertiary }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WORKING_ON_FARM" | translate }}</ion-label>
+      <p>{{ working_on_farm }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WORKING_OFF_FARM" | translate }}</ion-label>
+      <p>{{ working_off_farm }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER" | translate }}</ion-label>
+      <p>{{ gender }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"READ_WRITE" | translate }}</ion-label>
+      <p>{{ read_write }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SCHOOLING" | translate }}</ion-label>
+      <p>{{ schooling }}</p>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

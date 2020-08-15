@@ -1,0 +1,22 @@
+#field-map { 
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.map_container { 
+    position: relative;
+    height: 60%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.fixedList { 
+    position: fixed;
+    height: 39%;
+    width: 100%;
+    bottom: 0;
+    overflow-y: scroll;
+}

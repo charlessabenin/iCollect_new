@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu/settings" routerDirection="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"NOT_SYNC_LIST" | translate }}</ion-title> 
+    <ion-buttons slot="end" *ngIf="data.length != 0">
+      <ion-button *ngIf="contact_data" (click)="clearContact()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="plantation_data" (click)="clearPlantation()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="location_data" (click)="clearLocation()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="local_data" (click)="clearData()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 *ngIf="data.length == 0" text-center>{{"DATA_NOT_STORED" | translate }}</h3>
+
+  <!-- Contact -->
+  <ion-list *ngIf="contact_data">
+    <ion-item *ngFor="let item of data" text-wrap>
+      <ion-thumbnail slot="start">
+        <img [src]="item.photo">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h3>{{item.filename}}</h3>
+        <p>{{item.doc_date}}</p>  
+        <small>{{item.description}}</small>
+        <!--<ion-progress-bar  value="{{item.sync}}" color="danger"></ion-progress-bar>-->
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Plantation -->
+  <ion-list *ngIf="plantation_data">
+    <ion-item *ngFor="let item of data" text-wrap>
+      <ion-thumbnail slot="start">
+        <img [src]="item.photo">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h3>{{item.filename}}</h3>
+        <p>{{item.doc_date}}</p>
+        <small>{{item.description}}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Location -->
+  <ion-list *ngIf="location_data">
+    <ion-item *ngFor="let item of data" text-wrap>
+      <ion-thumbnail slot="start">
+        <img [src]="item.photo">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h3>{{item.picture_name}}</h3>
+        <p>{{item.date}}</p>
+        <small>{{item.description}}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Data -->
+  <ion-list *ngIf="local_data">
+    <ion-item *ngIf="local_data_spinner">
+      <div style="text-align: center; width: 100%;">
+        {{local_data_progress_value}}
+      </div>
+      <ion-progress-bar color="danger" value={{local_data_progress}}></ion-progress-bar>
+    </ion-item>
+    <ion-item *ngFor="let item of data" text-wrap>
+      <ion-label>
+        <h2>{{item.field_name}}</h2>
+        <p>{{item.field_table}}</p>
+      </ion-label>
+      <ion-label slot="end">{{item.field_value}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="data.length != 0">
+  <ion-toolbar color="danger">
+    <ion-button *ngIf="contact_data" fill="clear" expand="full" (click)="syncContacts()" style="color:#fff;">
+      <ion-icon slot="start" name="sync"></ion-icon> Sync
+    </ion-button>
+
+    <ion-button *ngIf="plantation_data" fill="clear" expand="full" (click)="syncPlantations()" style="color:#fff;">
+      <ion-icon slot="start" name="sync"></ion-icon> Sync
+    </ion-button>
+
+    <ion-button *ngIf="location_data" fill="clear" expand="full" (click)="syncLocationPics()" style="color:#fff;">
+      <ion-icon slot="start" name="sync"></ion-icon> Sync
+    </ion-button>
+
+    <ion-button *ngIf="local_data" fill="clear" expand="full" (click)="syncData()" style="color:#fff;">
+      <ion-icon slot="start" name="sync"></ion-icon> Sync
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

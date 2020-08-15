@@ -1,0 +1,536 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToDetails()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"EDIT_PLANTATION" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="savePlantationDetails()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"PLANTATION_ID" | translate }}</ion-label>
+      <p>{{ id_plantation }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CODE_FARMER" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="code_farmer" name="code_farmer"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VILLAGE" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="name_town" name="name_town"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIELD_NAME_NUMBER" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="code_plantation" name="code_plantation"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"STATUS" | translate }}</ion-label>
+      <ion-select [(ngModel)]="dc_completed" name="dc_completed">
+        <ion-select-option *ngFor="let item of dc_completedList" [value]="item.value">{{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{"INACTIVE" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="inactive_checked" name="inactive_checked"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CULTURE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_culture" name="id_culture">
+        <ion-select-option *ngFor="let item of cultureList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-list-header color="danger">{{"CERTIFICATIONS" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GLOBALGAP" | translate }}</ion-label>
+      <ion-select [(ngModel)]="globalgap" name="globalgap">
+        <ion-select-option *ngFor="let item of globalgapList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RSPO" | translate }}</ion-label>
+      <ion-select [(ngModel)]="rspo" name="rspo">
+        <ion-select-option *ngFor="let item of rspoList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIO" | translate }}</ion-label>
+      <ion-select [(ngModel)]="bio" name="bio">
+        <ion-select-option *ngFor="let item of bioList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIO_SUISSE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="bio_suisse" name="bio_suisse">
+        <ion-select-option *ngFor="let item of bio_suisseList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">Certification FairTrade</ion-label>
+      <ion-select [(ngModel)]="fair_trade" name="fair_trade">
+        <ion-select-option *ngFor="let item of fairTradeList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-list-header color="danger">{{"PROPERTY" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NUMB_FEET" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="numb_feet" name="numb_feet"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"HECTERES" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="area" name="area"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"ACRES" | translate }}</ion-label>
+      <p>{{ area_acres }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"YIELD_ESTIMATE" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="yield_estimate" name="yield_estimate"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_USE" | translate }}</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="year_creation" name="year_creation" min="1920" max="2020"
+        pickerFormat="YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EXTENSION" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="extension_photo_btn" (click)="get_extension_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="extension" name="extension"  (ionChange)="extensionPhoto()">
+        <ion-select-option *ngFor="let item of extensionList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="year_extension_preview">
+      <ion-label position="stacked">{{"DATE" | translate }}</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="year_extension" name="year_extension" min="1920" max="2045"
+      pickerFormat="YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"REPLANTING" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="replanting_photo_btn" (click)="get_replanting_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="replanting" name="replanting" (ionChange)="replantingYearAndPhoto()">
+        <ion-select-option *ngFor="let item of replantingList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item >
+  
+    <ion-item *ngIf="year_to_replant_preview">
+      <ion-label position="stacked">{{"DATE" | translate }}</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="year_to_replant" name="year_to_replant" min="1920" max="2045"
+      pickerFormat="YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAND_USE_RIGHT" | translate }}</ion-label>
+      <ion-select [(ngModel)]="property" name="property">
+        <ion-select-option *ngFor="let item of propertyList" [value]="item.id_property">{{item.property_name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAND_OWNERSHIP_CONFLICT" | translate }}</ion-label>
+      <ion-select [(ngModel)]="lands_rights_conflict" name="lands_rights_conflict" (ionChange)="lands_rights_conflictNote()">
+        <ion-select-option *ngFor="let item of lands_rights_conflictList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="lands_rights_conflict_note_preview">
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="lands_rights_conflict_note" name="lands_rights_conflict_note"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TITTLE_DEED" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="title_deed_photo_btn" (click)="get_title_deed_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="title_deed" name="title_deed"  (ionChange)="titleDeedPhoto()">
+        <ion-select-option *ngFor="let item of titledeedList" [value]="item.titledeed_value">{{item.titledeed_name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VARIETY" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="variety" name="variety"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SEED_TYPE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="seed_type" name="seed_type">
+        <ion-select-option *ngFor="let item of seed_typeList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"ROAD_ACCESS" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="road_access_photo_btn" (click)="get_road_access_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="road_access" name="road_access" (ionChange)="road_accessPhoto()">
+        <ion-select-option *ngFor="let item of road_accessList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-list-header color="danger">{{"WATER_SOURCE" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RIVER" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="river_photo_btn" (click)="get_river_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="eco_river" name="eco_river" (ionChange)="riverPhoto()">
+        <ion-select-option *ngFor="let item of eco_riverList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SHALLOWS" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="shallows_photo_btn" (click)="get_shallows_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="eco_shallows" name="eco_shallows" (ionChange)="shallowsPhoto()">
+        <ion-select-option *ngFor="let item of eco_shallowsList" [value]="item.value">{{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"IRRIGATION" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="irrigation_photo_btn" (click)="get_irrigation_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="irrigation" name="irrigation" (ionChange)="irrigationPhoto()">
+        <ion-select-option *ngFor="let item of irrigationList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DRAINAGE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="drainage_photo_btn" (click)="get_drainage_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="drainage" name="drainage" (ionChange)="drainagePhoto()">
+        <ion-select-option *ngFor="let item of drainageList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SLOPE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="slope_photo_btn" (click)="get_slope_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="slope" name="slope" (ionChange)="slopePhoto()">
+        <ion-select-option *ngFor="let item of slopeList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="slope_text_preview">
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="slope_text" name="slope_text"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WELLS" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="wells_photo_btn" (click)="get_wells_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="eco_wells" name="eco_wells" (ionChange)="wellsPhoto()">
+        <ion-select-option *ngFor="let item of eco_wellsList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BUFFERZONE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="bufferzone_photo_btn" (click)="get_bufferzone_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="perimeter" name="perimeter" (ionChange)="bufferzonePhoto()">
+        <ion-select-option *ngFor="let item of perimeterList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FOREST" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="forest_photo_btn" (click)="get_forest_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="forest" name="forest" (ionChange)="forestValue()">
+        <ion-select-option *ngFor="let item of forestList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="fire_photo_btn" (click)="get_fire_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="fire" name="fire" (ionChange)="fireValue()">
+        <ion-select-option *ngFor="let item of fireList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WASTE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="waste_photo_btn" (click)="get_waste_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="waste" name="waste" (ionChange)="wasteValue()">
+        <ion-select-option *ngFor="let item of wasteList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item> 
+
+
+
+    <ion-list-header color="danger">{{"INPUTS" | translate }}</ion-list-header> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"PEST" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="pest" name="pest"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_FERTILIZER" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="synt_fertilizer_photo_btn" (click)="get_synt_fertilizer_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="synthetic_fertilizer" name="synthetic_fertilizer" (ionChange)="syntheticFertilizer()">
+        <ion-select-option *ngFor="let item of fertilizerList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_HERBICIDES" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="synt_herbicides_photo_btn" (click)="get_synt_herbicides_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="synthetic_herbicides" name="synthetic_herbicides" (ionChange)="syntheticHerbicides()">
+        <ion-select-option *ngFor="let item of herbicideList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_PESTICIDE" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="synt_pesticide_photo_btn" (click)="get_synt_pesticide_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="synthetic_pesticide" name="synthetic_pesticide" (ionChange)="syntheticPesticide()">
+        <ion-select-option *ngFor="let item of pesticideList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div style="padding-bottom:25px; padding-left:15px; padding-right:15px;">
+      <small position="stacked" >{{"STORAGE" | translate }}</small>
+      <ion-row style="padding-top:7px;" no-padding>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" (click)="get_storage_photo()">
+            <ion-icon slot="start" name="camera"></ion-icon> {{"STORAGE_PHOTO" | translate }}
+          </ion-button>
+        </ion-col>
+    
+        <ion-col size="6">
+          <ion-button expand="block" color="primary" (click)="get_storage_map()">
+            <ion-icon slot="start" name="map"></ion-icon> {{"STORAGE_MAP" | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+
+    <ion-list-header color="danger">{{"STATE_OF_PLANTATION" | translate }}</ion-list-header>
+    
+    <ion-item>
+      <ion-label position="stacked">{{"ADJOINING_CULTURES" | translate }}</ion-label>
+      <ion-button slot="start" fill="clear" *ngIf="adj_cultures_photo_btn" (click)="get_adj_cultures_photo()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-select multiple="true" [(ngModel)]="adjoining_cultures" name="adjoining_cultures" (ionChange)="adjoiningCultures()">
+        <ion-select-option *ngFor="let item of adjoining_culturesList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"INTERCROPPING" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="intercropping" name="intercropping"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"HARVEST" | translate }}</ion-label>
+      <ion-select multiple="true" [(ngModel)]="harvest" name="harvest">
+        <ion-select-option value="jan">{{"JANUARY" | translate }}</ion-select-option>
+        <ion-select-option value="feb">{{"FEBRUARY" | translate }}</ion-select-option>
+        <ion-select-option value="mar">{{"MARCH" | translate }}</ion-select-option>
+        <ion-select-option value="apr">{{"APRIL" | translate }}</ion-select-option>
+        <ion-select-option value="may">{{"MAY" | translate }}</ion-select-option>
+        <ion-select-option value="jun">{{"JUNE" | translate }}</ion-select-option>
+        <ion-select-option value="jul">{{"JULY" | translate }}</ion-select-option>
+        <ion-select-option value="aug">{{"AUGUST" | translate }}</ion-select-option>
+        <ion-select-option value="sep">{{"SEPTEMBER" | translate }}</ion-select-option>
+        <ion-select-option value="oct">{{"OCTOBER" | translate }}</ion-select-option>
+        <ion-select-option value="nov">{{"NOVEMBER" | translate }}</ion-select-option>
+        <ion-select-option value="dec">{{"DECEMBER" | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RATING" | translate }}</ion-label>
+      <ion-select [(ngModel)]="rating" name="rating">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list>
+    <ion-list-header color="danger">{{"MANAGER" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PLANTATION_MANAGER" | translate }}</ion-label>
+      <ion-select [(ngModel)]="owner_manager" name="owner_manager" (ionChange)="PlantManagerValue(owner_manager)">
+        <ion-select-option *ngFor="let item of plantManagerList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="manager_firstname" name="manager_firstname" [disabled]="firstname_field"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="manager_lastname" name="manager_lastname" [disabled]="lastname_field"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MANAGER_CIVIL" | translate }}</ion-label>
+      <ion-select [(ngModel)]="manager_civil" name="manager_civil" [disabled]="manager_civil_field">
+        <ion-select-option *ngFor="let item of civilstList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="manager_phone" name="manager_phone" [disabled]="manager_phone_field"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FARMER_EXPERIENCE" | translate }}</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="farmer_experience" name="farmer_experience" min="1920" max="2020"
+        pickerFormat="YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FARMER_EXPERIENCE_LEVEL" | translate }}</ion-label>
+      <ion-select [(ngModel)]="farmer_experience_level" name="farmer_experience_level">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
+    </ion-item> 
+    
+    <ion-item>
+      <ion-label position="stacked">{{"DAY_WORKER_PAY" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="day_worker_pay" name="day_worker_pay"></ion-input>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER_WORKERS" | translate }}</ion-label>
+      <ion-select [(ngModel)]="gender_workers" name="gender_workers">
+        <ion-select-option *ngFor="let item of gender_workersList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MIGRANT_WORKERS" | translate }}</ion-label>
+      <ion-select [(ngModel)]="migrant_workers" name="migrant_workers">
+        <ion-select-option *ngFor="let item of migrant_workersList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"CHILDREN_WORK" | translate }}</ion-label>
+      <ion-select [(ngModel)]="children_work" name="children_work">
+        <ion-select-option *ngFor="let item of children_workList" [value]="item.id_regvalue">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_STAFF_PERM" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="number_staff_permanent" name="number_staff_permanent"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_STAFF_TEMP" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="number_staff_temporary" name="number_staff_temporary"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="notes" name="notes"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"TASK_DETAILS" | translate }}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"SHORT_TITLE" | translate }}</ion-label>
+      <p>{{ task_titleshort }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_FARMER" | translate }}</ion-label>
+      <p>{{ tt_farmers }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_FIELDS" | translate }}</ion-label>
+      <p>{{ tt_plantation }}</p>
+    </ion-item>
+
+    <ion-item style="background:#e4e4e4;">
+      <ion-label position="stacked">{{"START_DATE" | translate }}</ion-label>
+      <p><ion-icon name="calendar" color="danger"></ion-icon> {{ planned_start_date }}</p>
+    </ion-item>
+
+    <ion-item style="background:#e4e4e4;">
+      <ion-label position="stacked">{{"DUE_DATE" | translate }}</ion-label>
+      <p><ion-icon name="calendar" color="danger"></ion-icon> {{ planned_end_date }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DELEGATED_TO" | translate }}</ion-label>
+      <p>{{ task_delegated_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"AGENT" | translate }}</ion-label>
+      <p>{{ agent_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TASK_STATUS" | translate }} </ion-label>
+      <p>{{ task_status_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"COMPLETED" | translate }} </ion-label>
+      <p>{{ task_done }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DESCRIPTION" | translate }}</ion-label>
+      <p>{{ task_description }}</p>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

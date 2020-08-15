@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToDetails()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"EDIT_HOUSEHOLD" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveHouseholdDetails()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item style="text-align:center;">
+      <ion-row>
+        <img [src]="avatarURL" *ngIf="avatarURL" style="width: 70%; height: auto; margin:0 auto;" />
+      </ion-row>
+
+      <ion-row>
+        <ion-button color="danger" expand="block" (click)="getHouseholdAvatar()">
+          <ion-icon style="margin-right:5px;" name="camera"></ion-icon> {{"PHOTO" | translate }}
+        </ion-button>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked"> {{"FIRST_NAME" | translate }} </ion-label>
+      <ion-input type="text" [(ngModel)]="fname" name="fname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAST_NAME" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="lname" name="lname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked"><strong color="danger">*</strong> {{"BIRTHYEAR" | translate }}</ion-label>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="birth_year" name="birth_year" min="1920" max="2020"
+        pickerFormat="YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RELATION" | translate }}</ion-label>
+      <ion-select [(ngModel)]="relation" name="relation">
+        <ion-select-option *ngFor="let item of relationList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_PRIMARY" | translate }}</ion-label>
+      <ion-select [(ngModel)]="graduate_primary" name="graduate_primary">
+        <ion-select-option *ngFor="let item of graduate_primaryList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_SECONDARY" | translate }}</ion-label>
+      <ion-select [(ngModel)]="graduate_secondary" name="graduate_secondary">
+        <ion-select-option *ngFor="let item of graduate_secondaryList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GRADUATE_TERTIARY" | translate }}</ion-label>
+      <ion-select [(ngModel)]="graduate_tertiary" name="graduate_tertiary">
+        <ion-select-option *ngFor="let item of graduate_tertiaryList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WORKING_ON_FARM" | translate }}</ion-label>
+      <ion-select [(ngModel)]="working_on_farm" name="working_on_farm">
+        <ion-select-option *ngFor="let item of working_on_farmList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WORKING_OFF_FARM" | translate }}</ion-label>
+      <ion-select [(ngModel)]="working_off_farm" name="working_off_farm">
+        <ion-select-option *ngFor="let item of working_off_farmList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER" | translate }}</ion-label>
+      <ion-select [(ngModel)]="gender" name="gender">
+        <ion-select-option *ngFor="let item of genderList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"READ_WRITE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="read_write" name="read_write">
+        <ion-select-option *ngFor="let item of read_writeList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SCHOOLING" | translate }}</ion-label>
+      <ion-select [(ngModel)]="schooling" name="schooling">
+        <ion-select-option *ngFor="let item of schoolingList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="danger">
+    <ion-button fill="clear" expand="full" (click)="deleteHousehold()" style="color:#fff;">
+      <ion-icon slot="start" name="trash"></ion-icon>
+      {{"DELETE" | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

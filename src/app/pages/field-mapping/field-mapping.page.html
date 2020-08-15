@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{"TASK_LIST" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="field_data" text-center>
+    <ion-icon style="font-size: 45px;" name="alert"></ion-icon>
+    <p>{{"NO_DATA_THIS_ACCOUNT" | translate }}</p>
+    <br/>
+    <ion-button (click)="contactList()">
+      <ion-icon name="people"></ion-icon>
+      {{"MENU_CONTACT_LIST" | translate }}
+    </ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of tasks" style="padding-bottom:3px;">
+      <ion-label item-start (click)="itemTask(item)">
+        <h2>{{item.town_name}}</h2>
+        <small>{{item.project_name}}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

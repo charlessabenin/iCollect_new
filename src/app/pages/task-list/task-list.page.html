@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button routerLink="/menu/project-list" routerDirection="back">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title>{{"TASK_LIST" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+      <ion-item *ngFor="let item of tasks" style="padding-bottom:3px;">
+        <ion-label item-start (click)="itemTask(item)">
+          <h2>{{item.town_name}}</h2>
+          <small>{{item.project_name}}</small>    
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="taskDetails(item.id_task)">
+            <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-item>
+    </ion-list>
+</ion-content>

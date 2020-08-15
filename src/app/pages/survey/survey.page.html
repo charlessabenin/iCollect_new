@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tabs" routerDirection="back">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"SURVEY_HOME" | translate }}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <img src="assets/ppi_logo.jpg" style="display: block; width: 100%; height: auto;">
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{"SELECT_REF" | translate }}</ion-label>
+      <ion-select [(ngModel)]="template" name="template">
+        <ion-select-option *ngFor="let item of templateList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="danger" expand="block" (click)="startServey()">{{"START_SURVEY" | translate }}</ion-button>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToList()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{"HOUSEHOLD_LIST" | translate }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="newHousehold()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding"> 
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+
+  <h3 *ngIf="households.length == 0" text-center>{{"NO_HOUSEHOLD_SAVED" | translate }}</h3>  
+  
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>  
+
+  <ion-list>
+    <ion-item *ngFor="let item of households">
+      <ion-avatar slot="start">
+        <img [src]="item.photo">
+      </ion-avatar>
+      <ion-label (click)="itemHousehold(item)">
+        <h3>{{item.fname}} {{item.lname}}</h3>
+        <p>{{item.cvalue}} ({{item.age}} Ans)</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

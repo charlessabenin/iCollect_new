@@ -1,0 +1,32 @@
+<ion-split-pane>
+  <ion-menu contentId="main-content">
+    <ion-content>
+      <ion-list>
+        <div class="item item-avatar">
+          <img [src]="avatar" *ngIf="avatar" >
+          <h2> {{ FullName }} </h2>
+          <p> {{ Company }} </p>
+        </div>
+        
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+          <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <div class="logOut" (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label> {{"LOGOUT" | translate }} </ion-label>
+        </div>  
+      </ion-list>
+
+      <small class="version">v1.4.9</small>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content" main></ion-router-outlet>
+</ion-split-pane>
+
+
+

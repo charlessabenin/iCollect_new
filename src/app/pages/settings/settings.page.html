@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{"SETTINGS" | translate }}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header>
+      {{"DATA_DOWNLOAD" | translate }}
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label stacked>{{"CONTACT_DATA" | translate }} </ion-label>
+      <ion-label>
+        <small>
+          <ion-icon name="calendar" color="danger" style="margin-right:7px;"></ion-icon>
+          {{ contact_data_date }}
+        </small>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>{{"PLATATION_DATA" | translate }} </ion-label>
+      <ion-label>
+        <small>
+          <ion-icon name="calendar" color="danger" style="margin-right:7px;"></ion-icon>
+          {{ plantation_data_date }}
+        </small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="danger" (click)="localUpdate()">
+    <ion-icon name="cloud-download" style="margin-right:7px;"></ion-icon>
+    {{"UPDATE_LOCAL_DB" | translate }}
+  </ion-button>
+
+  <!--<div style="padding-top:12px;">
+    <ion-button expand="block" color="danger" (click)="downloadAvatars()">
+      <ion-icon name="photos"></ion-icon> {{"DOWNLOAD_AVATAR" | translate }}
+    </ion-button>
+    <small *ngIf="downAvatar_data" style="color: #676a6c;">
+      <ion-icon name="calendar" color="danger" style="margin-right:7px;"></ion-icon>
+      {{"LAST_DOWNLOAD_AVATAR" | translate }} : {{ downAvatar_data_date }}
+    </small>
+  </div>-->
+
+  <ion-list>
+    <ion-list-header>
+      {{"DATA_UPLOAD" | translate }}
+    </ion-list-header>
+  </ion-list>
+
+  <div>
+    <ion-button expand="block" color="danger" (click)="backup()">
+      <ion-icon name="cloud-upload" style="margin-right:7px;"></ion-icon>
+      {{"DB_BACKUP" | translate }}
+    </ion-button>
+    <small *ngIf="backup_data" style="color: #676a6c;">
+      <ion-icon name="calendar" color="danger" style="margin-right:7px;"></ion-icon>
+      {{"LAST_BACKUP" | translate }} : {{ backup_data_date }}
+    </small>
+  </div>
+
+  <small style="margin-top: 15px;">
+    <ion-icon name="document" color="danger" style="margin-right:7px;"></ion-icon>
+    {{"UPLOAD_DOC" | translate }}
+  </small>
+
+  <ion-row>
+    <ion-col col-6 no-padding>
+      <ion-button expand="block" color="danger" (click)="uploadContactDocs()">
+        {{"CONTACT_DOCS_UPLOAD" | translate }}
+      </ion-button>
+    </ion-col>
+
+    <ion-col col-6 no-padding>
+      <ion-button expand="block" color="danger" (click)="uploadPlantationDocs()">
+        {{"PLANTATION_DOCS_UPLOAD" | translate }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <small *ngIf="document_data" style="color: #676a6c;">
+    <ion-icon name="calendar" color="danger" style="margin-right:7px;"></ion-icon>
+    {{"LAST_DOC_UPLOADED" | translate }} : {{ document_data_date }}
+  </small>
+
+  <div>
+    <ion-button expand="block" color="secondary" (click)="notSyncList()">
+      <ion-icon name="sync" style="margin-right:7px;"></ion-icon>
+      {{"NOT_SYNC_LIST" | translate }}
+    </ion-button>
+  </div>
+
+  <small style="margin-top: 15px;">
+    <ion-icon name="location-outline" color="danger" style="margin-right:7px;"></ion-icon>
+    {{"UPLOAD_LOCATION_PIC" | translate }}
+  </small>
+
+  <div>
+    <ion-button expand="block" color="danger" (click)="uploadLocationDocs()">
+      <ion-icon name="pin" style="margin-right:7px;"></ion-icon>
+      {{"LOCATION_PICS_UPLOAD" | translate }}
+    </ion-button>
+  </div>
+
+
+  <ion-list>
+    <ion-list-header>
+      {{"USER_MANAGEMENT" | translate }}
+    </ion-list-header>
+  </ion-list>
+
+  <div>
+    <ion-button expand="block" color="danger" (click)="deleteDatabase()">
+      <ion-icon name="trash" style="margin-right:7px;"></ion-icon>
+      {{"DELETE_DB" | translate }} 
+    </ion-button>
+  </div>
+
+  <ion-list>
+    <!--   <ion-item>
+          <ion-label>{{"HIGH_ACCURACY" | translate }} </ion-label>
+          <ion-toggle [(ngModel)]="high_accuracy_value" name="high_accuracy_value" (ionChange)="changeAccuracy()"></ion-toggle>
+        </ion-item> --> 
+
+    <ion-item>
+      <ion-label>{{"LANG_SELECT" | translate }} </ion-label>
+      <ion-select [(ngModel)]="lang" name="lang" id="lang" (ionChange)="changeLanguage(lang)">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="fr">Français</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

@@ -1,0 +1,411 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/tabs/tabs/plantation-list" routerDirection="root"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"PLANTATION_DETAILS" | translate }} </ion-title> 
+    <ion-buttons slot="end">
+      <ion-button (click)="editPlantation()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"PLANTATION_ID" | translate }}</ion-label>
+      <p>{{ id_plantation }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"CODE_FARMER" | translate }}</ion-label>
+      <p>{{ code_farmer }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VILLAGE" | translate }}</ion-label>
+      <p>{{ name_town }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIELD_NAME_NUMBER" | translate }}</ion-label>
+      <p>{{ fieldNumber }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"STATUS" | translate }}</ion-label>
+      <p>{{ dc_completed }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"INACTIVE" | translate }}</ion-label>
+      <p>{{ inactive }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CULTURE" | translate }}</ion-label>
+      <p>{{ culture }}</p>
+    </ion-item>
+
+
+
+    <ion-list-header color="danger">{{"CERTIFICATIONS" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GLOBALGAP" | translate }}</ion-label>
+      <p>{{ globalgap }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RSPO" | translate }}</ion-label>
+      <p>{{ rspo }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIO" | translate }}</ion-label>
+      <p>{{ bio }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIO_SUISSE" | translate }}</ion-label>
+      <p>{{ bio_suisse }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">Certification FairTrade</ion-label>
+      <p>{{ fair_trade }}</p>
+    </ion-item>
+
+
+
+
+    <ion-list-header color="danger">{{"PROPERTY" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NUMB_FEET" | translate }}</ion-label>
+      <p>{{ numb_feet }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"HECTERES" | translate }}</ion-label>
+      <p>{{ area }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"ACRES" | translate }}</ion-label>
+      <p>{{ area_acres }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"YIELD_ESTIMATE" | translate }}</ion-label>
+      <p>{{ yield_estimate  }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_USE" | translate }}</ion-label>
+      <p>{{ year_creation }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EXTENSION" | translate }}</ion-label>
+      <p>{{ extension }} 
+        <small *ngIf="year_extension_preview"><br> <b>{{"DATE" | translate }}</b>: {{ year_extension }}</small>
+      </p>
+      <ion-button slot="end" *ngIf="extension_photo_preview" fill="clear" (click)="show_extension_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"REPLANTING" | translate }}</ion-label>
+      <p>{{ replanting }} 
+        <small *ngIf="year_to_replant_preview"><br> <b>{{"DATE" | translate }}</b>: {{ year_to_replant }}</small>
+      </p>
+      <ion-button slot="end" *ngIf="replanting_photo_preview" fill="clear" (click)="show_replanting_photo()">
+        <ion-icon slot="icon-only" name="images"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAND_USE_RIGHT" | translate }}</ion-label>
+      <p>{{ property }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAND_OWNERSHIP_CONFLICT" | translate }}</ion-label>
+      <p>{{ lands_rights_conflict }}
+        <small *ngIf="lands_rights_conflict_note_preview"><br> <b>{{"NOTES" | translate }}</b> : {{ lands_rights_conflict_note }}</small>
+      </p>
+      
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TITTLE_DEED" | translate }}</ion-label>
+      <p>{{ title_deed }}</p>
+      <ion-button slot="end" *ngIf="title_deed_photo_preview" fill="clear" (click)="show_title_deed_photo()">
+        <ion-icon slot="icon-only" name="images"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VARIETY" | translate }}</ion-label>
+      <p>{{ variety }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SEED_TYPE" | translate }}</ion-label>
+      <p>{{ seed_type }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"ROAD_ACCESS" | translate }}</ion-label>
+      <p>{{ road_access }}</p>
+      <ion-button slot="end" *ngIf="road_access_photo_preview" fill="clear" (click)="show_road_access_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+
+
+    <ion-list-header color="danger">{{"WATER_SOURCE" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RIVER" | translate }}</ion-label>
+      <p>{{ eco_river }}</p>
+      <ion-button slot="end" *ngIf="river_photo_preview" fill="clear" (click)="show_river_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SHALLOWS" | translate }}</ion-label>
+      <p>{{ eco_shallows }}</p>
+      <ion-button slot="end" *ngIf="shallows_photo_preview" fill="clear" (click)="show_shallows_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"IRRIGATION" | translate }}</ion-label>
+      <p>{{ irrigation }}</p>
+      <ion-button slot="end" *ngIf="irrigation_photo_preview" fill="clear" (click)="show_irrigation_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DRAINAGE" | translate }}</ion-label>
+      <p>{{ drainage }}</p>
+      <ion-button slot="end" *ngIf="drainage_photo_preview" fill="clear" (click)="show_dranage_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SLOPE" | translate }}</ion-label>
+      <p>{{ slope }} 
+        <small *ngIf="slope_text_preview"><br> {{"NOTES" | translate }}: {{ slope_text }}</small>
+      </p>
+      <ion-button slot="end" *ngIf="slope_photo_preview" fill="clear" (click)="show_slope_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WELLS" | translate }}</ion-label>
+      <p>{{ eco_wells }}</p>
+      <ion-button slot="end" *ngIf="wells_photo_preview" fill="clear" (click)="show_wells_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BUFFERZONE" | translate }}</ion-label>
+      <p>{{ perimeter }}</p>
+      <ion-button slot="end" *ngIf="bufferzone_photo_preview" fill="clear" (click)="show_bufferzone_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FOREST" | translate }}</ion-label>
+      <p>{{ forest }}</p>
+      <ion-button slot="end" *ngIf="forest_photo_preview" fill="clear" (click)="show_forest_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRE" | translate }}</ion-label> 
+      <p>{{ fire }}</p> 
+      <ion-button slot="end" *ngIf="fire_photo_preview" fill="clear" (click)="show_fire_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WASTE" | translate }}</ion-label>
+      <p>{{ waste }}</p>
+      <ion-button slot="end" *ngIf="waste_photo_preview" fill="clear" (click)="show_waste_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item> 
+
+
+
+    <ion-list-header color="danger">{{"INPUTS" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PEST" | translate }}</ion-label>
+      <p>{{ pest }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_FERTILIZER" | translate }}</ion-label>
+      <p>{{ synthetic_fertilizer }}</p>
+      <ion-button slot="end" *ngIf="synthetic_fertilizer_photo_preview" fill="clear" (click)="show_synt_fertilizer_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_HERBICIDES" | translate }}</ion-label>
+      <p>{{ synthetic_herbicides  }}</p>
+      <ion-button slot="end" *ngIf="synthetic_herbicides_photo_preview" fill="clear" (click)="show_synt_herbicides_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"SYNT_PESTICIDE" | translate }}</ion-label>
+      <p>{{ synthetic_pesticide }}</p>
+      <ion-button slot="end" *ngIf="synthetic_pesticide_photo_preview" fill="clear" (click)="show_synt_pesticide_photo()">
+        <ion-icon slot="icon-only" name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <div style="padding-bottom:25px; padding-left:15px; padding-right:15px;">
+      <small position="stacked">{{"STORAGE" | translate }}</small>
+      <ion-row style="padding-top:7px;" no-padding>
+        <ion-col size="6" *ngIf="storage_photo_preview">
+          <ion-button expand="block" color="danger" (click)="show_storage_photo()">
+            <ion-icon name="camera"></ion-icon> {{"STORAGE_PHOTO" | translate }}
+          </ion-button>
+        </ion-col>
+    
+        <ion-col size="6" *ngIf="storage_map_preview">
+          <ion-button expand="block" color="primary" (click)="show_storage_map()">
+            <ion-icon name="map"></ion-icon> {{"STORAGE_MAP" | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    
+
+
+    <ion-list-header color="danger">{{"STATE_OF_PLANTATION" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"ADJOINING_CULTURES" | translate }}</ion-label>
+      <p>{{ adjoining_cultures }}</p>
+      <ion-button slot="end" *ngIf="adj_cultures_photo_preview" fill="clear" (click)="show_adj_cultures_photo()">
+        <ion-icon slot="icon-only" name="images"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"INTERCROPPING" | translate }}</ion-label>
+      <p>{{ intercropping }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"HARVEST" | translate }}</ion-label>
+      <p>{{ harvest }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"RATING" | translate }}</ion-label>
+      <p>{{ rating }}</p>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list>
+    <ion-list-header color="danger">{{"MANAGER" | translate }}</ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PLANTATION_MANAGER" | translate }}</ion-label>
+      <p>{{ owner_manager }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NAME" | translate }}</ion-label>
+      <p>{{ name_manager }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MANAGER_CIVIL" | translate }}</ion-label>
+      <p>{{ manager_civil }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }}</ion-label>
+      <p>{{ manager_phone }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FARMER_EXPERIENCE" | translate }}</ion-label>
+      <p>{{ farmer_experience }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FARMER_EXPERIENCE_LEVEL" | translate }}</ion-label>
+      <p>{{ farmer_experience_level }}</p>
+    </ion-item> 
+    
+    <ion-item>
+      <ion-label position="stacked">{{"DAY_WORKER_PAY" | translate }}</ion-label>
+      <p>{{ day_worker_pay }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER_WORKERS" | translate }}</ion-label>
+      <p>{{ gender_workers }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MIGRANT_WORKERS" | translate }}</ion-label>
+      <p>{{ migrant_workers }}</p>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"CHILDREN_WORK" | translate }}</ion-label>
+      <p>{{ children_work }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_STAFF_PERM" | translate }}</ion-label>
+      <p>{{ number_staff_permanent }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_STAFF_TEMP" | translate }}</ion-label>
+      <p>{{ number_staff_temporary }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <p>{{ notes }}</p>
+    </ion-item>
+
+  </ion-list>
+  
+</ion-content>

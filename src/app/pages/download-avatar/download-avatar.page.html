@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/menu/settings" routerDirection="back">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"DOWNLOAD_AVATAR" | translate }}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 *ngIf="avatar.length == 0" text-center>{{"DATA_NOT_STORED" | translate }}</h3>
+  
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="avatar.length != 0">
+    <ion-item *ngFor="let item of avatar" text-wrap>
+      <ion-thumbnail slot="start">
+        <img-loader src="{{item.avatar_path}}" useImg></img-loader>
+      </ion-thumbnail>
+
+      <ion-label>
+        <h3>{{item.name}}</h3>
+        <p>{{item.birth_date}} 
+          <span style="float:right;" *ngIf="item.status_data">  
+            <ion-icon style="color:green" name="checkmark"></ion-icon>
+          </span>
+        </p>
+        <ion-progress-bar *ngIf="download" value="{{item.avatar_download}}" color="danger"></ion-progress-bar>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="avatar.length != 0">
+  <ion-toolbar color="danger">
+    <ion-button fill="clear" expand="full" (click)="dataDownload()" style="color:#fff;">
+      <ion-icon slot="start" name="download"></ion-icon> {{"DOWNLOAD_BTN" | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

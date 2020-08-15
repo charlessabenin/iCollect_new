@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToEdit()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"STORAGE_MAP" | translate }}</ion-title>
+    <ion-buttons *ngIf="actionBtn" slot="end">
+      <ion-button (click)="newStorage()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id='storage-map'></div>
+</ion-content>

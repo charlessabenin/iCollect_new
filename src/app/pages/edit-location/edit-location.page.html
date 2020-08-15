@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToDetails()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"EDIT_LOCATION" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">{{"LOCATION_TYPE" | translate }} </ion-label>
+    <ion-select [(ngModel)]="location_type">
+      <ion-select-option *ngFor="let item of locationTypeList" value="{{item.id_regvalue}}">{{item.cvalue}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">{{"TOWN" | translate }}</ion-label>
+    <ion-input type="text" [(ngModel)]="town" name="town"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">{{"AREA" | translate }}</ion-label>
+    <ion-input type="text" [(ngModel)]="area" name="area"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">{{"DESCRIPTION" | translate }}</ion-label>
+    <ion-textarea elastic rows="5" [(ngModel)]="description" name="description"></ion-textarea>
+  </ion-item>
+</ion-content>

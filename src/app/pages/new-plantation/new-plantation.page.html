@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tabs/tabs/plantation-list" routerDirection="back">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"NEW_PLANTATION" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="savePlantationDetails()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"CULTURE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="culture" name="culture">
+        <ion-select-option *ngFor="let item of cultureList" value="{{item.id_regvalue}}">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
+</ion-content>

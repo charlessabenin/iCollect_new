@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{"PROJECT_LIST" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="project_data" text-center>
+    <ion-icon style="font-size: 45px;" name="alert"></ion-icon>
+    <p>{{"NO_DATA_THIS_ACCOUNT" | translate }}</p>
+    <br/>
+    <ion-button (click)="contactList()">
+      <ion-icon name="people"></ion-icon>
+      {{"MENU_CONTACT_LIST" | translate }}
+    </ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of projects">
+      <ion-label item-start (click)="projectTask(item)">
+        <h2>{{item.project_name}}</h2>
+        <p>{{item.project_type_name}}</p>    
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="projectDetails(item.id_project)">
+          <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

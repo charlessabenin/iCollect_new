@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu/location" routerDirection="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"LOCATION_MAP" | translate }}</ion-title>
+    <ion-buttons *ngIf="actionBtn" slot="end">
+      <ion-button (click)="newLocation()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="start" *ngIf="!actionBtn" slot="fixed">
+    <ion-fab-button (click)="addLocationMedia()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div id='location-map'></div>
+</ion-content>

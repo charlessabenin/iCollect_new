@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navback()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"SURVEY_QUESTION" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="not_complete">
+    <div>
+      <h1>{{ question }}</h1>
+    </div>
+
+    <ion-list>
+      <ion-radio-group [(ngModel)]="survey_answers" name="survey_answers">
+        <ion-list-header>
+          <ion-label>{{"ANSWERS" | translate }}</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of answersList">
+          <ion-label style="overflow:visible;"><strong>{{item.ans_code}}. </strong> {{item.ans_text}}</ion-label>
+          <ion-radio slot="end" [value]="item.id_suranswer"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button color="danger" expand="block" (click)="nextQuestion()">{{"NEXT" | translate }}</ion-button>
+  </div>
+
+  <div *ngIf="complete">
+    <img src="assets/ppi_logo.jpg" style="display: block; width: 100%; height: auto;">
+    <h1 style="text-align: center;">{{"SURVEY_COMPLETE" | translate }}<br />{{"THANK_YOU" | translate }}</h1>
+  </div>
+</ion-content>

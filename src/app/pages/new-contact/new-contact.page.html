@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToList()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"NEW_CONTACT" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="checkId()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"VILLAGE" | translate }}</ion-label>
+      {{ town_name }}
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="firstname" name="firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="lastname" name="lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_gender" name="id_gender">
+        <ion-select-option *ngFor="let item of genderList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
+
+  <ion-list>
+    <ion-list-header>
+      {{"NEW_PLANTATION" | translate }}
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CULTURE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_culture2" name="id_culture2">
+        <ion-select-option *ngFor="let item of cultureList" value="{{item.id_regvalue}}">{{item.cvalue}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

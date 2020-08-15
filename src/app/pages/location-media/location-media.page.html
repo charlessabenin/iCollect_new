@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu/location" routerDirection="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"LOCATION_PICTURES" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addPicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2><strong>{{"LOCATION_TYPE" | translate }} :</strong> {{ location_type }}</h2> 
+        <h3><strong>{{"TOWN" | translate }} :</strong> {{ town }}</h3> 
+        <p><strong>{{"AREA" | translate }} :</strong> {{ area }}</p> 
+        <p><strong>{{"DESCRIPTION" | translate }} :</strong> <small>{{ description }}</small></p>  
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="locationPic.length == 0">
+      <h3 text-center>{{"N_PICT_STORED" | translate }}</h3>
+    </ion-item>
+  </ion-list>
+
+  <div *ngFor="let item of locationPic" style="margin-bottom: 15px;">
+    <img [src]="item.pictureLink">
+    <ion-label>
+      <h2><ion-icon name="calendar"></ion-icon> {{ item.date }}</h2>
+      <h3>{{ item.description }} <ion-icon name="create" color="danger" (click)="editDescription(item);"></ion-icon></h3>
+    </ion-label>
+  </div>
+  
+</ion-content>

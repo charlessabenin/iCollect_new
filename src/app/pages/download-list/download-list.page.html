@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="login">
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"DOWNLOAD_LIST" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col col-6>
+      <ion-button expand="block" color="danger" (click)="restFetchRegvalues(1)">
+        Update Values
+      </ion-button>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-button expand="block" color="danger" (click)="restFetchTowns(1)">
+        Update Towns
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item *ngIf="ctd_total">
+      <ion-label>
+        <h3>Contact Documents</h3>
+        <p>{{ ctd_total_rows }}/<strong>{{ ctd_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ ctd_data_date }}</small>
+        <ion-progress-bar *ngIf="ctd_spinner" color="danger" value={{ctd_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="ctd_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="ctd_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="cth_total">
+      <ion-label>
+        <h3>Contact Household</h3>
+        <p>{{ cth_total_rows }}/<strong>{{ cth_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ cth_data_date }}</small>
+        <ion-progress-bar *ngIf="cth_spinner" color="danger" value={{cth_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="cth_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="cth_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="ct_total">
+      <ion-label>
+        <h3>Contact</h3>
+        <p>{{ ct_total_rows }}/<strong>{{ ct_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ ct_data_date }}</small>
+        <ion-progress-bar *ngIf="ct_spinner" color="danger" value={{ct_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="ct_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="ct_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="locp_total">
+      <ion-label>
+        <h3>Infrastructure Images</h3>
+        <p>{{ locp_total_rows }}/<strong>{{ locp_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ locp_data_date }}</small>
+        <ion-progress-bar *ngIf="locp_spinner" color="danger" value={{locp_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="locp_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="locp_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="loc_total">
+      <ion-label>
+        <h3>Infrastructure</h3>
+        <p>{{ loc_total_rows }}/<strong>{{ loc_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ loc_data_date }}</small>
+        <ion-progress-bar *ngIf="loc_spinner" color="danger" value={{loc_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="loc_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="loc_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="path_total">
+      <ion-label>
+        <h3>Path</h3>
+        <p>{{ path_total_rows }}/<strong>{{ path_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ path_data_date }}</small>
+        <ion-progress-bar *ngIf="path_spinner" color="danger" value={{path_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="path_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="path_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="plt_total">
+      <ion-label>
+        <h3>Plantation</h3>
+        <p>{{ plt_total_rows }}/<strong>{{ plt_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ plt_data_date }}</small>
+        <ion-progress-bar *ngIf="plt_spinner" color="danger" value={{plt_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="plt_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="plt_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="pltd_total">
+      <ion-label>
+        <h3>Plantation Documents</h3>
+        <p>{{ pltd_total_rows }}/<strong>{{ pltd_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ pltd_data_date }}</small>
+        <ion-progress-bar *ngIf="pltd_spinner" color="danger" value={{pltd_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="pltd_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="pltd_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="pjt_total">
+      <ion-label>
+        <h3>Project</h3>
+        <p>{{ pjt_total_rows }}/<strong>{{ pjt_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ pjt_data_date }}</small>
+        <ion-progress-bar *ngIf="pjt_spinner" color="danger" value={{pjt_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="pjt_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="pjt_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="ptsk_total">
+      <ion-label>
+        <h3>Project Task</h3>
+        <p>{{ ptsk_total_rows }}/<strong>{{ ptsk_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ ptsk_data_date }}</small>
+        <ion-progress-bar *ngIf="ptsk_spinner" color="danger" value={{ptsk_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="ptsk_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="ptsk_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="ttsk_total">
+      <ion-label>
+        <h3>Town Task</h3>
+        <p>{{ ttsk_total_rows }}/<strong>{{ ttsk_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ ttsk_data_date }}</small>
+        <ion-progress-bar *ngIf="ttsk_spinner" color="danger" value={{ttsk_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="ttsk_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="ttsk_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="reg_total">
+      <ion-label>
+        <h3>Registervalue</h3>
+        <p>{{ reg_total_rows }}/<strong>{{ reg_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ reg_data_date }}</small>
+        <ion-progress-bar *ngIf="reg_spinner" color="danger" value={{reg_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="reg_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="reg_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="sra_total">
+      <ion-label>
+        <h3>Survey Answers</h3>
+        <p>{{ sra_total_rows }}/<strong>{{ sra_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ sra_data_date }}</small>
+        <ion-progress-bar *ngIf="sra_spinner" color="danger" value={{sra_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="sra_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="sra_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="srq_total">
+      <ion-label>
+        <h3>Survey Questions</h3>
+        <p>{{ srq_total_rows }}/<strong>{{ srq_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ srq_data_date }}</small>
+        <ion-progress-bar *ngIf="srq_spinner" color="danger" value={{srq_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="srq_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="srq_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="srt_total">
+      <ion-label>
+        <h3>Survey Template</h3>
+        <p>{{ srt_total_rows }}/<strong>{{ srt_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ srt_data_date }}</small>
+        <ion-progress-bar *ngIf="srt_spinner" color="danger" value={{srt_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="srt_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="srt_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="srua_total">
+      <ion-label>
+        <h3>User Survey Answers</h3>
+        <p>{{ srua_total_rows }}/<strong>{{ srua_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ srua_data_date }}</small>
+        <ion-progress-bar *ngIf="srua_spinner" color="danger" value={{srua_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="srua_row_less" color="danger" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="srua_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="twn_total">
+      <ion-label>
+        <h3>Towns</h3>
+        <p>{{ twn_total_rows }}/<strong>{{ twn_total }}</strong></p>
+        <small style="color:#9fa0a2;">{{ twn_data_date }}</small>
+        <ion-progress-bar *ngIf="twn_spinner" color="danger" value={{twn_progress}}></ion-progress-bar>
+      </ion-label>
+      <ion-icon *ngIf="twn_row_less" color="danger" slot="end" name="alert-circle-outline"></ion-icon>
+      <ion-icon *ngIf="twn_row_ok" color="success" slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="login">
+  <ion-toolbar color="danger">
+    <ion-button fill="clear" expand="full" (click)="download()" style="color:#fff;">
+      <ion-icon slot="start" name="cloud-download-outline"></ion-icon> {{"DOWNLOAD_BTN" | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

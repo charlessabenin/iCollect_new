@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToList()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"PLANTATION" | translate }}</ion-title> 
+    <ion-buttons slot="end">
+      <ion-button (click)="newPlantation()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of plantations">
+      <ion-thumbnail slot="start" (click)="itemPlantation(item)">
+        <img src="../../../assets/land.png">
+      </ion-thumbnail>
+      <ion-label (click)="plantationDetails(item)">
+        <h3>
+          <span *ngIf="item.status_data">
+            <ion-icon style="color:green" name="checkmark"></ion-icon>
+          </span> {{item.code_plantation}}
+        </h3>
+        <small>{{item.culture}}</small>
+        <p>
+          <span *ngIf="item.area!='null'">Surface : {{item.area_round}},</span>
+          <span *ngIf="item.area_acres!='null'"> Area : {{item.area_acres_round}}</span>
+        </p>
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="itemPlantationMedia(item)">
+        <ion-icon slot="icon-only" name="images"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="item.owner_manager==640" slot="end" fill="clear" (click)="managerHousehold(item.id_manager)">
+        <ion-icon slot="icon-only" name="contacts"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

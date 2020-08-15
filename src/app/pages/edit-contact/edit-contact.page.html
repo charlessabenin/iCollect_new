@@ -1,0 +1,193 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToDetails()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveContactDetails()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item style="text-align:center;">
+      <ion-row>
+        <div style="width: 70%; height: auto; margin:0 auto;">
+          <img-loader [src]="avatarURL" *ngIf="avatarURL" useImg></img-loader>
+        </div>
+      </ion-row>
+
+      <ion-row>
+        <ion-button color="danger" expand="block" (click)="getAvatar()">
+          <ion-icon style="margin-right:5px;" name="camera"></ion-icon> {{"PHOTO" | translate }}
+        </ion-button>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{"STATUS" | translate }}</ion-label>
+      <ion-select [(ngModel)]="dc_completed" name="dc_completed">
+        <ion-select-option *ngFor="let item of dc_completedList" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"FIRST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="firstname" name="firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LAST_NAME" | translate }} </ion-label> 
+      <ion-input type="text" [(ngModel)]="lastname" name="lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CONTAC_CODE" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="contact_code" name="contact_code"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"CIVIL_STATUS" | translate }}</ion-label>
+      <ion-select [(ngModel)]="civil_status" name="civil_status">
+        <ion-select-option *ngFor="let item of civil_statusList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NATIONALITY" | translate }}</ion-label>
+      <ion-select [(ngModel)]="nationality" name="nationality">
+        <ion-select-option *ngFor="let item of nationalityList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_CHILDREN" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="number_children" name="number_children"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PLACE_BIRTH" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="place_birth" name="place_birth"></ion-input>
+    </ion-item>
+    
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 1</ion-label>
+      <ion-input type="tel" [(ngModel)]="p_phone" name="p_phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 2</ion-label>
+      <ion-input type="tel" [(ngModel)]="p_phone2" name="p_phone2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PHONE" | translate }} 3</ion-label>
+      <ion-input type="tel" [(ngModel)]="p_phone3" name="p_phone3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MOBILE_PAYEMENT" | translate }}</ion-label>
+      <ion-input type="tel" [(ngModel)]="p_phone4" name="p_phone4"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MOBILE_MONEY_OPERATOR" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="mobile_money_operator" name="mobile_money_operator"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_PRIVATE" | translate }}</ion-label>
+      <ion-input type="email" [(ngModel)]="p_email2" name="p_email2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_BUSINESS" | translate }}</ion-label>
+      <ion-input type="email" [(ngModel)]="p_email" name="p_email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"EMAIL_ICOLLECT" | translate }}</ion-label>
+      <p>{{ p_email3 }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BANK_NAME" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="bankname" name="bankname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"MEMBER_OF_COOP" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_coop_member" name="id_coop_member">
+        <ion-select-option *ngFor="let item of id_coop_memberList" [value]="item.value">{{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label position="stacked">{{"COOP_NAME" | translate }}</ion-label>
+      <p>{{ cooperative_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TOWN" | translate }}</ion-label>
+      <p>{{ town_name }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"VILLAGE" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="p_street1" name="p_street1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"GENDER" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_gender" name="id_gender">
+        <ion-select-option *ngFor="let item of genderList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"BIRTHDATE" | translate }}</ion-label>
+      <ion-datetime displayFormat="DD MMMM YYYY" [(ngModel)]="birth_date" name="birth_date" min="1920-01-01"
+        max="2020-12-31" pickerFormat="DD MMMM YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"LANGUAGE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="national_lang" name="national_lang">
+        <ion-select-option *ngFor="let item of languageList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TRADITIONAL_LANGUAGE" | translate }}</ion-label>
+      <ion-select [(ngModel)]="other_lang" name="other_lang">
+        <ion-select-option *ngFor="let item of languageList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NOTES" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="notes" name="notes"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="signature('farmer')">
+    {{"FARMER_SIGNATURE" | translate }}
+  </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="signature('agent')">
+    {{"AGENT_SIGNATURE" | translate }}
+  </ion-button>
+</ion-content>

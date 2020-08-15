@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/location-map" routerDirection="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{"LOCATION_MAP" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <ion-row>
+      <ion-col col-12>
+        <strong>Longitude :</strong> {{ coordx }}
+      </ion-col>
+
+      <ion-col col-12>
+        <strong>Latitude :</strong> {{ coordy }}
+      </ion-col>
+
+      <ion-col col-12>
+        <strong>{{"ACCURACY" | translate }} :</strong> {{ accuracy }}
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"LOCATION_TYPE" | translate }} </ion-label>
+      <ion-select [(ngModel)]="location_type">
+        <ion-select-option *ngFor="let item of locationTypeList" value="{{item.id_regvalue}}">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"REGION" | translate }} </ion-label>
+      <ion-select [(ngModel)]="id_region_name">
+        <ion-select-option *ngFor="let item of regionList" value="{{item.gid_town}}@@{{item.name_town}}">
+          {{item.name_town}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"TOWN" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="town" name="town"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"AREA" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="area" name="area"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"DESCRIPTION" | translate }}</ion-label>
+      <ion-textarea elastic rows="5" [(ngModel)]="description" name="description"></ion-textarea>
+    </ion-item>
+
+    <ion-button color="danger" expand="full" (click)="add()">{{"SAVE_LOCATION" | translate }}</ion-button>
+  </ion-list>
+</ion-content>

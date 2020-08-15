@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)="backToList()">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    <ion-title>{{"HOME_MAP" | translate }}</ion-title>
+    <ion-buttons slot="end" *ngIf="saveBtn">
+        <ion-button (click)="saveHomeLocation()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div id='map'></div>
+</ion-content>

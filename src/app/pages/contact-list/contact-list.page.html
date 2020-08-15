@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/task-list" routerDirection="back">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{"CONTACT_LIST" | translate }}</ion-title>
+    <ion-buttons slot="end" *ngIf="new_contact">
+      <ion-button (click)="newContact()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+<!--
+  <ion-virtual-scroll [items]="contacts" approxItemHeight="70px" [headerFn]="separateLetter">
+
+    <ion-item-divider *virtualHearder="let header" color="danger">
+      <ion-label>{{ header }}</ion-label>
+    </ion-item-divider>
+
+    <ion-card *virtualItem="let user" (click)="itemContact(user)">
+      <div>
+        <ion-img [src]="user.photo" [alt]="user.name"></ion-img>
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{ user.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ user.contact_code }}
+        <p>{{ user.town_name }}</p>
+        <ion-icon style="color:green" slot="end" *ngIf="user.status_data" name="checkmark"></ion-icon>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-virtual-scroll>
+-->
+  
+  <ion-list>
+    <ion-item *ngFor="let item of contacts" (click)="itemContact(item)">
+      <ion-avatar slot="start">
+        <img [src]='item.photo'>
+      </ion-avatar>
+      <ion-label>
+        <h3><strong>{{item.name}}</strong></h3>
+        <h6>{{item.contact_code}}</h6>
+        <p>{{item.town_name}}</p>
+      </ion-label>
+      <ion-icon style="color:green" slot="end" *ngIf="item.status_data" name="checkmark"></ion-icon>
+    </ion-item>
+  </ion-list>
+  
+
+</ion-content>
