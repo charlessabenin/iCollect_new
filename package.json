@@ -38,14 +38,14 @@
     "@ionic-native/sqlite": "^5.27.0",
     "@ionic-native/sqlite-porter": "^5.27.0",
     "@ionic-native/status-bar": "^5.0.0",
-    "@ionic-native/video-player": "^5.27.0",
+    "@ionic-native/video-player": "^5.28.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.3.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "angular2-signaturepad": "^2.11.0",
     "com-sarriaroman-photoviewer": "^1.2.5",
-    "cordova-android": "8.1.0",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-advanced-http": "^3.0.0",
     "cordova-plugin-android-permissions": "^1.0.2",
     "cordova-plugin-background-mode": "^0.7.3",
@@ -104,10 +104,16 @@
       "com-sarriaroman-photoviewer": {},
       "com.moust.cordova.videoplayer": {},
       "cordova-plugin-media-capture": {},
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-request-location-accuracy": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-request-location-accuracy": {
+        "PLAY_SERVICES_LOCATION_VERSION": "16.+"
+      },
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-geolocation": {},
       "cordova-sqlite-storage": {},

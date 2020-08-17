@@ -1,7 +1,7 @@
 {
   "name": "iCollect_new",
   "integrations": {
-    "capacitor": {}
+    "cordova": {}
   },
   "type": "angular",
   "id": "26ce96b2"
