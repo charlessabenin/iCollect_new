@@ -60,7 +60,6 @@
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-request-location-accuracy": "^2.3.0",
     "cordova-plugin-streaming-media": "^2.3.0",
-    "cordova-plugin-video-player": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
     "cordova-sqlite-storage": "^5.0.1",
     "ionic-cache": "^5.2.0",
     "ionic-image-loader": "^7.0.0-beta.2",
@@ -103,7 +102,6 @@
       "cordova-plugin-insomnia": {},
       "cordova-plugin-background-mode": {},
       "com-sarriaroman-photoviewer": {},
-      "com.moust.cordova.videoplayer": {},
       "cordova-plugin-media-capture": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
