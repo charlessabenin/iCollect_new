@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { EditMediaPage } from '../edit-media/edit-media.page';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
 @Component({
   selector: 'app-media',
@@ -37,7 +37,7 @@ export class MediaPage implements OnInit {
     private photoViewer: PhotoViewer,
     private db: DatabaseService,
     private webview: WebView,
-    private videoPlayer: VideoPlayer,
+    private streamingMedia: StreamingMedia,
     private modalController: ModalController
   ) { }
 
@@ -217,8 +217,16 @@ export class MediaPage implements OnInit {
   }
 
   async playVideo(filename) { 
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log('Error streaming') },
+      orientation: 'landscape',
+      shouldAutoClose: true,
+      controls: false
+    };
+
     let correctPath = this.file.externalRootDirectory + 'icollect/plantations/' + filename;
-    this.videoPlayer.play(correctPath);
+    this.streamingMedia.playVideo(correctPath, options);
   }
 
   newMedia() {

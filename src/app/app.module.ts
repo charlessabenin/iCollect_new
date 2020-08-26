@@ -25,7 +25,7 @@ import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { CacheModule } from "ionic-cache";
 import { IonicImageLoader } from 'ionic-image-loader';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
@@ -73,7 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
     FileTransfer,
     Camera,
     PhotoViewer,
-    VideoPlayer,
+    StreamingMedia,
     MediaCapture,
     BackgroundMode,
     Insomnia,
