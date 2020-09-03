@@ -39,13 +39,13 @@ export class LanguagePage implements OnInit {
     });
   }
 
-  changeLanguage(langauge){   
+  changeLanguage(langauge){    alert(langauge);
     this.translate.use(langauge);
     let data = {
       lang : langauge
     };
-
-    this.navCtrl.navigateRoot(['login', data]);
+alert(0);
+    this.navCtrl.navigateRoot(['login', data]); alert(1);
   }
 
 }
