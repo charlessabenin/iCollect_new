@@ -32,20 +32,20 @@ export class LanguagePage implements OnInit {
               save_login: usr.save_login
             };
         
-            this.navCtrl.navigateRoot(['login', data]);
+            this.navCtrl.navigateForward(['login', data]);
           }
         });
       }
     });
   }
 
-  changeLanguage(langauge){    alert(langauge);
+  changeLanguage(langauge){  
     this.translate.use(langauge);
     let data = {
       lang : langauge
     };
-alert(0);
-    this.navCtrl.navigateRoot(['login', data]); alert(1);
+
+    this.navCtrl.navigateForward(['login', data]); 
   }
 
 }
