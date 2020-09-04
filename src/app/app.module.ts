@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -36,6 +36,21 @@ import { EditMediaPageModule } from './pages/edit-media/edit-media.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+import * as Sentry from "sentry-cordova";
+
+Sentry.init({ dsn: "https://f135645cb487479d8b4d4d584efcd18a@o375394.ingest.sentry.io/5324346" });
+
+export class SentryIonicErrorHandler extends ErrorHandler {
+  handleError(error) {
+    super.handleError(error);
+    try {
+      Sentry.captureException(error.originalError || error);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 @NgModule({

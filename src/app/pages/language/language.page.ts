@@ -32,7 +32,7 @@ export class LanguagePage implements OnInit {
               save_login: usr.save_login
             };
         
-            this.navCtrl.navigateForward(['login', data]);
+            this.navCtrl.navigateRoot(['login', data]);
           }
         });
       }
@@ -45,7 +45,7 @@ export class LanguagePage implements OnInit {
       lang : langauge
     };
 
-    this.navCtrl.navigateForward(['login', data]); 
+    this.navCtrl.navigateRoot(['login', data]); 
   }
 
 }

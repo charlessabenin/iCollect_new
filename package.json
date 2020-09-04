@@ -65,6 +65,7 @@
     "ionic-cache": "^5.2.0",
     "ionic-image-loader": "^7.0.0-beta.2",
     "rxjs": "~6.5.1",
+    "sentry-cordova": "^0.17.0",
     "ts-md5": "^1.2.7",
     "tslib": "^1.10.0",
     "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
@@ -135,7 +136,11 @@
         "MIN_BACKGROUND_DURATION": "30",
         "UPDATE_API": "https://api.ionicjs.com"
       },
-      "uk.co.workingedge.cordova.plugin.sqliteporter": {}
+      "uk.co.workingedge.cordova.plugin.sqliteporter": {},
+      "sentry-cordova": {}
+    },
+    "config": {
+      "ionic_generate_source_map": "true"
     },
     "platforms": [
       "android"
